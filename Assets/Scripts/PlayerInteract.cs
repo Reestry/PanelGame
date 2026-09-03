@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerInteract : PlayerInput, IInputable
@@ -8,6 +9,10 @@ public class PlayerInteract : PlayerInput, IInputable
     [SerializeField] private float _takeForce;
 
     [SerializeField] private float _maxLenghth = 5f;
+
+    [SerializeField] private RectTransform _crosshair;
+
+    [SerializeField] private Camera _cam;
 
     private Rigidbody _item;
     private IInputable _inputableImplementation;
@@ -28,9 +33,11 @@ public class PlayerInteract : PlayerInput, IInputable
         }
 
 
-        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        var screenPoint = _crosshair.position;
 
-        if (Physics.Raycast(ray, out var hit, 4f))
+        var ray = _cam.ScreenPointToRay(screenPoint);
+
+        if (Physics.Raycast(ray, out var hit, 3f, LayerMask.GetMask("Interactable") )) //, QueryTriggerInteraction.Ignore
         {
             if (hit.collider.TryGetComponent<IInteractable>(out var obj))
             {
@@ -59,6 +66,7 @@ public class PlayerInteract : PlayerInput, IInputable
         if (distance > _maxLenghth)
         {
             DropItem();
+            return;
         }
 
         _item.linearVelocity = direction * _takeForce;
@@ -69,8 +77,8 @@ public class PlayerInteract : PlayerInput, IInputable
     {
         _item.TryGetComponent<IInteractable>(out var interactable);
         interactable.Release();
-
         _item = null;
+
         GameplayManagerUI.Instance.gameObject.SetActive(true);
     }
 

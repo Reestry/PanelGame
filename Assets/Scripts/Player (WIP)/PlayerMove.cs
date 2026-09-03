@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public enum MoveState
@@ -11,6 +12,18 @@ public enum MoveState
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : PlayerInput, IInputable
 {
+    
+    [Header("Camera")]
+    [SerializeField] private CinemachineBasicMultiChannelPerlin _cinemachine;
+    private float _startAmplitude;
+    private float _amplitudeMultiplier;
+    [SerializeField] private float _walkAmplitude = 1.5f;
+    [SerializeField] private float _sprintAmplitude = 3.5f;
+    private float _startFrequency;
+    private float _frequencyMultiplier;
+    [SerializeField] private float _walkFrequency = 2;
+    [SerializeField] private float _sprintFrequency = 4f;
+    
     [Header("Movement")] [SerializeField] private float _walkSpeed = 5f;
     [SerializeField] private float _sprintSpeed = 10f;
     [SerializeField] private float _crouchSpeed = 2f;
@@ -33,6 +46,33 @@ public class PlayerController : PlayerInput, IInputable
         _inputHandler.SetInput(this);
         _inputHandler.OnMoveHandler += GetMove;
         SetState(MoveState.Walk);
+
+        _startAmplitude = _cinemachine.AmplitudeGain;
+        _startFrequency = _cinemachine.FrequencyGain;
+    }
+
+    private void Update()
+    {
+        var isMoving = _inputVector.magnitude >= 0.1f && _characterController.isGrounded;
+        _amplitudeMultiplier = GetAmplitudeForState();
+        _frequencyMultiplier = GetFrequencyForState();
+
+        var targetAmplitude = isMoving ? _amplitudeMultiplier : _startAmplitude;
+        var targetFrequency = isMoving ? _frequencyMultiplier : _startFrequency;
+        
+        _cinemachine.AmplitudeGain = Mathf.Lerp(
+            _cinemachine.AmplitudeGain, 
+            targetAmplitude, 
+            Time.deltaTime * 5f 
+        );
+        
+        _cinemachine.FrequencyGain = Mathf.Lerp(
+            _cinemachine.FrequencyGain, 
+            targetFrequency, 
+            Time.deltaTime * 5f 
+        );
+        
+        // можно также изменять pivotOffset с 2 на 6 при беге
     }
 
     private void OnDisable()
@@ -98,6 +138,20 @@ public class PlayerController : PlayerInput, IInputable
             MoveState.Sprint => _sprintSpeed,
             MoveState.Crouch => _crouchSpeed,
             _ => _walkSpeed
+        };
+
+    private float GetAmplitudeForState() =>
+        _moveState switch
+        {
+            MoveState.Sprint => _sprintAmplitude,
+            _ => _walkAmplitude
+        };
+    
+    private float GetFrequencyForState() =>
+        _moveState switch
+        {
+            MoveState.Sprint => _sprintFrequency,
+            _ => _walkFrequency
         };
 
     private void SetState(MoveState state) => _moveState = state;

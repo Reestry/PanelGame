@@ -2,7 +2,7 @@ using System;
 using DefaultNamespace;
 using UnityEngine;
 
-public class InteractableItem : MonoBehaviour, IInteractable
+public class InteractableIconObject : MonoBehaviour
 {
     [SerializeField] private InteractableIcon _interactableIcon;
 
@@ -12,14 +12,14 @@ public class InteractableItem : MonoBehaviour, IInteractable
     private void Start()
     {
         _icon = CreateInteractableIcon(transform);
-        _icon.gameObject.SetActive(false);
+        HideIcon();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>())
         {
-            _icon.gameObject.SetActive(true);
+            AppearIcon();
         }
     }
 
@@ -31,7 +31,7 @@ public class InteractableItem : MonoBehaviour, IInteractable
 
         if (other.GetComponent<PlayerController>())
         {
-            _icon.gameObject.SetActive(true);
+            AppearIcon();
             _hasTriggered = true;
         }
     }
@@ -40,7 +40,7 @@ public class InteractableItem : MonoBehaviour, IInteractable
     {
         if (other.GetComponent<PlayerController>())
         {
-            _icon.gameObject.SetActive(false);
+            HideIcon();
             _hasTriggered = false;
         }
     }
@@ -52,13 +52,13 @@ public class InteractableItem : MonoBehaviour, IInteractable
 
         return icon;
     }
-    
-    public void Interact()
+
+    public void HideIcon()
     {
         _icon.gameObject.SetActive(false);
     }
 
-    public void Release()
+    public void AppearIcon()
     {
         _icon.gameObject.SetActive(true);
     }
