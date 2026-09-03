@@ -7,17 +7,32 @@ public class InteractableItem : MonoBehaviour, IInteractable
     [SerializeField] private InteractableIcon _interactableIcon;
 
     private InteractableIcon _icon;
+    private bool _hasTriggered;
 
-    private void OnEnable()
+    private void Start()
     {
         _icon = CreateInteractableIcon(transform);
+        _icon.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>())
         {
-            _icon = CreateInteractableIcon(transform);
+            _icon.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //Для оптимизации
+        if (_hasTriggered)
+            return;
+
+        if (other.GetComponent<PlayerController>())
+        {
+            _icon.gameObject.SetActive(true);
+            _hasTriggered = true;
         }
     }
 
@@ -25,10 +40,10 @@ public class InteractableItem : MonoBehaviour, IInteractable
     {
         if (other.GetComponent<PlayerController>())
         {
-            DestroyInteractableIcon();
+            _icon.gameObject.SetActive(false);
+            _hasTriggered = false;
         }
     }
-
 
     private InteractableIcon CreateInteractableIcon(Transform target)
     {
@@ -37,12 +52,7 @@ public class InteractableItem : MonoBehaviour, IInteractable
 
         return icon;
     }
-
-    private void DestroyInteractableIcon()
-    {
-        Destroy(_icon.gameObject);
-    }
-
+    
     public void Interact()
     {
         _icon.gameObject.SetActive(false);

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerInteract : PlayerInput, IInputable
 {
+    [SerializeField] private Transform _handPos;
+    [SerializeField] private float _takeForce;
+
+    [SerializeField] private float _maxLenghth = 5f;
+
+    private Rigidbody _item;
     private IInputable _inputableImplementation;
 
     private void OnEnable()
@@ -41,12 +47,6 @@ public class PlayerInteract : PlayerInput, IInputable
         }
     }
 
-    [SerializeField] private Transform _handPos;
-    [SerializeField] private float _takeForce;
-
-    [SerializeField] private float _maxLenghth = 5f;
-
-    private Rigidbody _item;
 
     private void FixedUpdate()
     {
@@ -67,14 +67,13 @@ public class PlayerInteract : PlayerInput, IInputable
 
     private void DropItem()
     {
+        _item.TryGetComponent<IInteractable>(out var interactable);
+        interactable.Release();
+
         _item = null;
         GameplayManagerUI.Instance.gameObject.SetActive(true);
     }
 
-    public bool HaveItem()
-    {
-        return _item;
-    }
 
     public void Run()
     {
