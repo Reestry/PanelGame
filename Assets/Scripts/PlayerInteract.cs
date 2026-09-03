@@ -45,6 +45,7 @@ public class PlayerInteract : PlayerInput, IInputable
                 obj.Interact();
 
 
+                // TODO сделать разделение на takeableItem и предмета, которое засунуется в "инвентарь"
                 if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
                 {
                     _item = rb;
