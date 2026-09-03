@@ -8,6 +8,11 @@ public class InteractableItem : MonoBehaviour, IInteractable
 
     private InteractableIcon _icon;
 
+    private void OnEnable()
+    {
+        _icon = CreateInteractableIcon(transform);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>())
@@ -40,6 +45,11 @@ public class InteractableItem : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        
+        _icon.gameObject.SetActive(false);
+    }
+
+    public void Release()
+    {
+        _icon.gameObject.SetActive(true);
     }
 }
