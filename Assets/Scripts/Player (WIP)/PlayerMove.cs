@@ -10,37 +10,51 @@ public enum MoveState
 }
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : PlayerInput, IInputable
+public class PlayerMoveController : PlayerInput, IInputable
 {
-    
     [Header("Camera")]
     [SerializeField] private CinemachineBasicMultiChannelPerlin _cinemachine;
     private float _startAmplitude;
     private float _amplitudeMultiplier;
-    [SerializeField] private float _walkAmplitude = 1.5f; //
-    [SerializeField] private float _sprintAmplitude = 3.5f; //
+    private float _walkAmplitude;
+    private float _sprintAmplitude;
     private float _startFrequency;
     private float _frequencyMultiplier;
-    [SerializeField] private float _walkFrequency = 2; //
-    [SerializeField] private float _sprintFrequency = 4f; //
-    
-    [Header("Movement")] 
-    [SerializeField] private float _walkSpeed = 5f; //
-    [SerializeField] private float _sprintSpeed = 10f; //
-    [SerializeField] private float _crouchSpeed = 2f; //
-    [SerializeField] private float _airControl = 0.3f; //
+    private float _walkFrequency;
+    private float _sprintFrequency;
 
-    [Header("Jump & Gravity")] 
-    [SerializeField] private float _jumpForce = 3f; //
 
-    [SerializeField] private float _gravity = -9.81f; //
-    [SerializeField] private float _itemPushForce = 10f; //
+    private float _walkSpeed;
+    private float _sprintSpeed;
+    private float _crouchSpeed;
+    private float _airControl;
+
+    private float _jumpForce;
+
+    private float _gravity;
+    private float _itemPushForce;
 
     private CharacterController _characterController;
     private Vector2 _inputVector;
     private Vector3 _velocity;
     private MoveState _moveState;
 
+
+    public void Initialize(PlayerConfig config)
+    {
+        _walkAmplitude = config.WalkAmplitude;
+        _sprintAmplitude = config.SprintAmplitude;
+        _walkFrequency = config.WalkFrequency;
+        _sprintFrequency = config.SprintFrequency;
+        _walkSpeed = config.WalkSpeed;
+        _sprintSpeed = config.SprintSpeed;
+        _crouchSpeed = config.CrouchSpeed;
+        _airControl = config.AirControl;
+
+        _jumpForce = config.JumpForce;
+        _gravity = config.Gravity;
+        _itemPushForce = config.ItemPushForce;
+    }
     private void OnEnable()
     {
         _characterController = GetComponent<CharacterController>();

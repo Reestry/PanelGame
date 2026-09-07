@@ -17,7 +17,7 @@ public class InteractableIconObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>())
+        if (other.GetComponent<PlayerMoveController>())
         {
             AppearIcon();
         }
@@ -29,7 +29,7 @@ public class InteractableIconObject : MonoBehaviour
         if (_hasTriggered)
             return;
 
-        if (other.GetComponent<PlayerController>())
+        if (other.GetComponent<PlayerMoveController>())
         {
             AppearIcon();
             _hasTriggered = true;
@@ -38,7 +38,7 @@ public class InteractableIconObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerController>())
+        if (other.GetComponent<PlayerMoveController>())
         {
             HideIcon();
             _hasTriggered = false;
