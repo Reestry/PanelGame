@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerLook : PlayerInput, IInputable
 {
-    [SerializeField] private float _mouseSens = 5; //
     [SerializeField] private Transform _mainCamera;
+    private float _mouseSens;
 
     private Vector2 _looking;
     private float xrotation;
     private float _lookOffset = 90;
 
+    public void Initialize(PlayerConfig config)
+    {
+        _mouseSens = config.MouseSens;
+    }
     private void OnEnable()
     {
         _inputHandler.OnLookHandler += GetLook;

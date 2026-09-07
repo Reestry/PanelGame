@@ -755,6 +755,7 @@ GameObject:
   - component: {fileID: 3867240248781597373}
   - component: {fileID: 8366065502351021550}
   - component: {fileID: 3394412370913401549}
+  - component: {fileID: 3986261126255055921}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -897,7 +898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdbf8ecb1a39164c8a5f1f2acc7124e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLook
-  _mouseSens: 8
   _mainCamera: {fileID: 8012864116950781689}
 --- !u!114 &8366065502351021550
 MonoBehaviour:
@@ -912,17 +912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   _cinemachine: {fileID: 8843643943303458666}
-  _walkAmplitude: 0.6
-  _sprintAmplitude: 0.8
-  _walkFrequency: 1.5
-  _sprintFrequency: 3
-  _walkSpeed: 5
-  _sprintSpeed: 10
-  _crouchSpeed: 2
-  _airControl: 0.8
-  _jumpForce: 1
-  _gravity: -9.81
-  _itemPushForce: 18
 --- !u!114 &3394412370913401549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,10 +925,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
   _handPos: {fileID: 6428833909768906540}
-  _takeForce: 20
-  _maxLenghth: 2
   _crosshair: {fileID: 5346451898141818948}
   _cam: {fileID: 6443488476450086441}
+--- !u!114 &3986261126255055921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604105114220794692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61a89513b566834781a74483c00f154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _config: {fileID: 11400000, guid: eebcdcb1b3ed6a44b82ed2083dec14c3, type: 2}
 --- !u!1 &8709938488636464090
 GameObject:
   m_ObjectHideFlags: 0

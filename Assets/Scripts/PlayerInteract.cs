@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerInteract : PlayerInput, IInputable
 {
     [SerializeField] private Transform _handPos;
-    [SerializeField] private float _takeForce;
+    private float _takeForce;
 
-    [SerializeField] private float _maxLenghth = 5f; //
+    private float _maxLenghth;
 
     [SerializeField] private RectTransform _crosshair;
 
@@ -17,6 +17,12 @@ public class PlayerInteract : PlayerInput, IInputable
     private Rigidbody _item;
     private IInputable _inputableImplementation;
 
+    public void Initialize(PlayerConfig config)
+    {
+        _maxLenghth = config.MaxLength;
+        _takeForce = config.TakeForce;
+    }
+    
     private void OnEnable()
     {
         _inputHandler.OnInteractPresssed += Interact;
