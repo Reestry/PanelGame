@@ -8,7 +8,7 @@ public class PlayerInteract : PlayerInput, IInputable
     [SerializeField] private Transform _handPos;
     [SerializeField] private float _takeForce;
 
-    [SerializeField] private float _maxLenghth = 5f;
+    [SerializeField] private float _maxLenghth = 5f; //
 
     [SerializeField] private RectTransform _crosshair;
 
@@ -31,8 +31,7 @@ public class PlayerInteract : PlayerInput, IInputable
             DropItem();
             return;
         }
-
-
+        
         var screenPoint = _crosshair.position;
 
         var ray = _cam.ScreenPointToRay(screenPoint);
@@ -86,5 +85,10 @@ public class PlayerInteract : PlayerInput, IInputable
 
     public void Run()
     {
+    }
+
+    private void OnDisable()
+    {
+        _inputHandler.OnInteractPresssed -= Interact;
     }
 }

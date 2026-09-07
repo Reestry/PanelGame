@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerLook : PlayerInput, IInputable
 {
-    [SerializeField] private float _mouseSens = 5;
-    [SerializeField] private CinemachineCamera _mainCamera;
+    [SerializeField] private float _mouseSens = 5; //
+    [SerializeField] private Transform _mainCamera;
 
     private Vector2 _looking;
     private float xrotation;
