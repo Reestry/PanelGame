@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1548487660508044265}
   - component: {fileID: 1498421234917778239}
   - component: {fileID: 7531464765552417447}
+  - component: {fileID: 7468023361130355691}
   - component: {fileID: 1228348956356748872}
   - component: {fileID: 4095627935187909714}
   - component: {fileID: 7161012221680150474}
@@ -75,7 +76,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6a1143ee683302f4aa628c052723efc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,8 +119,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0317883, y: 2.0421672, z: 0.36766052}
-  m_Center: {x: -0.008351405, y: 0.011534492, z: 0.8212657}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7468023361130355691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505181405210266599}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.41, y: 1.97, z: 2.3}
+  m_Center: {x: -0.84, y: 0, z: 2.22}
 --- !u!54 &1228348956356748872
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -282,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1412809479566714007, guid: ddebc805260dacf499743595b801b2a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.63
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 1412809479566714007, guid: ddebc805260dacf499743595b801b2a8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -312,9 +334,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1412809479566714007, guid: ddebc805260dacf499743595b801b2a8, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2977016715005071458, guid: ddebc805260dacf499743595b801b2a8, type: 3}
       propertyPath: m_Radius
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4485833237073444597, guid: ddebc805260dacf499743595b801b2a8, type: 3}
       propertyPath: m_Name
