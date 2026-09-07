@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - Interactable
-  - 
+  - PlayerGun
   - 
   - 
   - 
@@ -49,7 +49,7 @@ TagManager:
   - Light Layer 4
   - Light Layer 5
   - Light Layer 6
-  - Light Layer 7
+  - PlayerGun
   - Decal Layer default
   - Decal Layer 1
   - Decal Layer 2
