@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de45fb68dc1106c4b9216a0f1b3138eb, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
-  _walkAmplitude: 1.5
-  _sprintAmplitude: 3.5
-  _walkFrequency: 2
-  _sprintFrequency: 4
-  _walkSpeed: 5
-  _sprintSpeed: 10
-  _crouchSpeed: 2
-  _airControl: 0.3
-  _jumpForce: 3
-  _gravity: -9.81
-  _itemPushForce: 10
-  _maxLenghth: 5
-  _mouseSens: 5
+  <WalkAmplitude>k__BackingField: 0.6
+  <SprintAmplitude>k__BackingField: 0.8
+  <WalkFrequency>k__BackingField: 1.5
+  <SprintFrequency>k__BackingField: 3
+  <WalkSpeed>k__BackingField: 5
+  <SprintSpeed>k__BackingField: 10
+  <CrouchSpeed>k__BackingField: 2
+  <AirControl>k__BackingField: 0.8
+  <JumpForce>k__BackingField: 1
+  <Gravity>k__BackingField: -9.81
+  <ItemPushForce>k__BackingField: 18
+  <MaxLength>k__BackingField: 5
+  <TakeForce>k__BackingField: 20
+  <MouseSens>k__BackingField: 5
