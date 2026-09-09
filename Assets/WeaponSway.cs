@@ -6,7 +6,7 @@ public class WeaponSway : MonoBehaviour
     private InputHandler _playerInput;
 
     [SerializeField] private Transform _targetWeapon;
-    
+
     private Vector2 _rotation;
 
     // Конфиг
@@ -19,21 +19,20 @@ public class WeaponSway : MonoBehaviour
     private int _invertYMultiplier = 1;
 
     
-    
     private void Awake()
     {
         _playerInput = GetComponent<InputHandler>();
-
-
-
     }
 
     private void LateUpdate()
     {
+        
+        //TODO Потом перенести в Awake
+        
         _invertXMultiplier = InvertX ? -1 : 1;
         _invertYMultiplier = InvertY ? -1 : 1;
-        
-        
+
+
         _rotation = _playerInput.ReturnHandler().Player.Look.ReadValue<Vector2>() * _swayMult;
 
         var rotationY = Quaternion.AngleAxis((_rotation.x / 2) * _invertYMultiplier, Vector3.up);
